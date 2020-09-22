@@ -1,0 +1,93 @@
+<h1>Instalação e execução</h1>
+
+<b>Requisitos</b>
+<ul>
+<li>Node</li>
+<li>GIT</li>
+<li>XAMPP</li>
+</ul>
+
+Para conferir se o Node e o git estão instalados na sua máquina basta executar os seguintes comandos no CMD:
+
+```
+node --version
+git --version
+```
+
+O resultados devem ser algo parecido com "v12.14.1" para o Node e "git version 2.25.1.windows.1" para o git
+
+<h2>Instalar o Node</h2>
+Caso não tenha o Node instalado, basta baixa-lo nesse site: https://nodejs.org/en/
+
+<h2>Instalar o GIT</h2>
+Caso não tenha o GIT instalado, basta seguir as instruções desse site: https://dicasdeprogramacao.com.br/como-instalar-o-git-no-windows/ 
+
+<h2>Instalar o XAMPP</h2>
+Caso não tenha o XAMPP instalado, basta baixa-lo nesse site: https://www.apachefriends.org/pt_br/index.html
+
+<h2>Configurando o ambiente de trabalho</h2>
+
+<h3>GIT</h3>
+Faça a configuração da sua conta GIT utilizando os seguintes comandos:
+
+```
+git config --global user.name "Seu Nome Aqui"
+git config --global user.email "Seu Email Aqui"
+```
+
+Com o GIT instalado e configurado, basta criar criar uma pasta e acessar ela através do CMD, para acessar uma pasta via CMD basta verificar se esta no disco desejado,
+caso não esteja digite a letra do disco seguido de dois pontos. Por exemplo "D:" e pressione enter. E para acessar a pasta digite "cd "caminho da pasta" e pressione enter.
+Dentro da pasta, execute o seguinte comando:
+
+```
+git clone https://gitlab.com/mapet1/mapet.git
+```
+
+Após isso o projeto inteiro já será baixado em uma pasta com o nome "mapet". Entre na pasta através do CMD, e execute o seguinte comando:
+
+```
+npm install
+```
+
+Esse comando instala todas as bibliotecas necessárias para executar o projeto.
+Ainda é preciso configurar e ligar o banco de dados, para isso copie a pasta "mapet" fica em dentro da pasta config, dentro da pasta database.
+Depois vá até o local onde o XAMPP foi instalado, normalmente "C:\xampp", entre na pasta mysql e depois na pasta data. E cole a pasta "mapet" dentro
+da pasta data. Depois volte até a pasta xampp e abra o painel de controle "xampp-control" e clique no botão "Start" referente ao MySQL.
+Com isso o banco de dados já esta configurado e funcional. É necessário ligar o MySQL através do painel de controle <b>toda vez</b> que quiser abrir o projeto.
+
+Finalmnente para executar o projeto, abra o CMD e navegue até a pasta "mapet" do projeto e digite o seguinte comando:
+
+``` 
+npm start
+```
+
+Uma mensagem de confirmação vai aparecer dizendo que o servidor esta online, agora para acessar o site basta ir no navegador e digitar "localhost".
+
+<h1>Estrutura do projeto</h1>
+
+O projeto esta estruturado seguindo os padrões MVC, dentro da pasta app tem as pastas controllers, models, public, routes e views. 
+
+<ul>
+<li>controllers: Contém os arquivos responsáveis por fazer a transição dos dados do frontend para o banco de dados</li>
+<li>models: Contém os arquivos com as classes de acesso ao banco de dados, essas classes representam as entidades do projeto e executam os comandos MySQL</li>
+<li>public: Contém todos os arquivos de frontend do projeto</li>
+<li>routes: Contém todos os arquivos responsáveis por criar e executar as rotas do site</li>
+<li>views: Contém todas as páginas do site</li>
+</ul>
+
+Ao criar ou editar qualquer arquivo, deve ser respeitado os padrões já presentes no projeto, como a organização das pastas e dos códigos.
+
+<h1>Utilizando o GIT<h1>
+
+Ao concluir alguma tarefa do projeto, é necessário enviar os arquivos que foram atualizados para a nuvem. Para isso basta executar os seguintes comandos:
+
+```
+git add .
+git commit -m "O que esta sendo atualizado, por exemplo: Finalizado páginas de cadastro, listagem, e edição do usuário"
+git push -u origin test
+```
+
+O comando "git add ." adiciona todos os arquivos que sofreram alteração para o commit, o comando "git commit" explica o que esta sendo enviado/atualizado. E o git
+push envia os dados para a nuvem. Lembrem sempre de enviarem os arquivos para a branch "test". Para isso basta utilizar o comando acima "git push -u origin test".
+<b>Não utilizar o comando</b> "git push -u origin master" pois ele vai enviar as alterações para a versão final do projeto. A versão final só deve ser alterada
+a cada sprint. Ela será utilizada para a entrega semanal do projeto.
