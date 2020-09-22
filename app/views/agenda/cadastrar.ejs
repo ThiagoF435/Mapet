@@ -50,7 +50,7 @@
           <span>Módulos</span></a>
       </li>
 	        <li class="nav-item">
-        <a class="nav-link" href="">
+        <a class="nav-link" href="agenda/listar">
           <i class="fas fa-fw fa-calendar"></i>
           <span>Agenda</span></a>
       </li>
@@ -83,52 +83,71 @@
           </div>
           <a href="/agenda/listar"><button id="btn-cancelar" class="btn btn-primary">Cancelar</button></a>      
           </nav>
-          <!-- <% if(validacao.length > 0) { %>
-            <strong>Atenção!</strong>
-                <ul>
-                <% for(var i = 0; i < validacao.length; i++) { %>
-                    <li><%= validacao[i].msg %></li>
-                <% } %>
-                </ul>
-          <% } %>  -->
+
       <section class="page-content">
         <div class="container">
 						<div class="col-md-12">
               <div id="div-table-content" class="card show  mb-1">
                 <div class="card-body">                
-								<form action="/agenda/salvar_cadastro" name="form" method="POST" onsubmit="return validateFormRaca()" role="form">
+								<form action="/agenda/salvar_cadastro" name="form" method="POST" onsubmit="return validateFormAgenda()" role="form">
 									<div class="row no-gutters align-items-center">
-    <div class="col-lg-6 pr-2">
-                                    <div class="form-group">
-                                        <label>Data</label>
-                                        <div class="input-group date">
-                                            <input type="date" class="form-control">
-                                           
-                                        </div>
-                                    </div>
-                                </div>
+                    <div class="col-lg-6 pr-2">
+                      <div class="form-group">
+                          <label>Data e Hora</label>
+                          <div class="input-group date">
+                              <input type="datetime-local" name="data" class="form-control" required>
+                          </div>
+                      </div>
+                      </div>
+                      <div class="col-md-6 pr-2">
+                        <div class="form-group">
+                            <label>
+                                Dono <span class="required">*</span>
+                            </label>
+                            <select name="id_dono" class="form-control" required>
+                              <option value="">Selecione</option>
+                              <% for(var i = 0; i < dadosCliente.length; i++) { %>
+                                <option value="<%=dadosCliente[i].id_dono%>"><%=dadosCliente[i].nome %> <%= dadosCliente[i].sobrenome%></option>
+                              <% } %>
+                            </select>
+                        </div>
+                    </div>
 										<div class="col-md-6 pr-2">
                       <div class="form-group">
                           <label>
                               Pet <span class="required">*</span>
                           </label>
-                          <select name="id_especie" class="form-control" required>
+                          <select name="id_animal" class="form-control" required>
                             <option value="">Selecione</option>
-                              <!-- <% for(var i = 0; i < dados.length; i++) { %>
-                                  <option value="<%=dados[i].id_especie%>"><%=dados[i].nome_especie%></option>
-                              <% } %> -->
+                            <% for(var i = 0; i < dadosAnimal.length; i++) { %>
+                              <option value="<%=dadosAnimal[i].id_animal%>"><%=dadosAnimal[i].nome%></option>
+                            <% } %>
                           </select>
                       </div>
                   </div>
+                  <div class="col-md-6 pr-2">
+                    <div class="form-group">
+                        <label>
+                            Veterinário(a) <span class="required">*</span>
+                        </label>
+                        <select name="id_user" class="form-control" required>
+                          <option value="">Selecione</option>
+                          <% for(var i = 0; i < dadosUsuario.length; i++) { %>
+                            <option value="<%=dadosUsuario[i].id_user%>"><%=dadosUsuario[i].nome%> <%=dadosUsuario[i].sobrenome%></option>
+                          <% } %>
+                        </select>
+                    </div>
+                </div>
 				  <div class="col-md-12 pr-2">
 											<div class="form-group">
 												<label>
-													OBS <span class="required">*</span>
+													Motivo <span class="required">*</span>
 												</label>
-												 <textarea class="form-control rounded-0" rows="10"></textarea>
+												 <textarea name="motivo" class="form-control rounded-0" rows="10" required></textarea>
 											</div>
 											</div>
-										</div>	
+                    </div>	
+                    <input type="hidden" value="..." name="compareceu">
                     <button type="submit" class="btn btn-primary">Agendar</button>
                   </form>  
                 </div>

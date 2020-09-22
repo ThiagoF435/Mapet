@@ -3,7 +3,9 @@ module.exports.cadastrar = function(app, req, res) {
     var model = new app.app.models.EspecieDAO(conn)
 
     model.pesquisar('', function(err, result) {
-        res.render('racas/cadastrar', {validacao : {}, dados : result})
+        if(err) throw err
+
+        res.render('racas/cadastrar', {dados : result})
     })
 }
 
@@ -38,8 +40,11 @@ module.exports.editar = function(app, req, res) {
     var modelRaca = new app.app.models.RacaDAO(conn)
 
     modelEspecie.pesquisar('', function(err, resultEspecie) {
+        if(err) throw err
         modelRaca.pesquisarId(id, function(err, result) {
-            res.render('racas/editar', {validacao : {}, dados : result, id : id, dadosEspecie : resultEspecie})
+            if(err) throw err
+
+            res.render('racas/editar', {dados : result, id : id, dadosEspecie : resultEspecie})
         })
     })
 }
@@ -47,13 +52,12 @@ module.exports.editar = function(app, req, res) {
 module.exports.visualizar = function(app, req, res) {
     var id = parseInt(req.query.id)
     var conn = app.config.databaseConnection()
-    var modelEspecie = new app.app.models.EspecieDAO(conn)
     var modelRaca = new app.app.models.RacaDAO(conn)
 
-    modelEspecie.pesquisar('', function(err, resultEspecie) {
-        modelRaca.pesquisarId(id, function(err, result) {
-            res.render('racas/visualizar', {validacao : {}, dados : result, id : id, dadosEspecie : resultEspecie})
-        })
+    modelRaca.pesquisarId(id, function(err, result) {
+        if(err) throw err
+
+        res.render('racas/visualizar', {dados : result, id : id})
     })
 }
 

@@ -35,7 +35,7 @@ AnimalDAO.prototype.pesquisar = function(obj, callback) {
 }
 
 AnimalDAO.prototype.pesquisarId = function(id, callback) {
-    this._connection.query('select * from animal where id_animal = '+id, callback)
+    this._connection.query('select a.*, c.nome as nome_dono, c.sobrenome as sobrenome_dono from animal a, cliente c where id_animal = '+id+' and a.id_dono = c.id_dono', callback)
 }
 
 AnimalDAO.prototype.pesquisarIdDono = function(id, callback) {

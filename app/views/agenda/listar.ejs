@@ -49,8 +49,8 @@
           <i class="fas fa-fw fa-border-all"></i>
           <span>Módulos</span></a>
       </li>
-	        <li class="nav-item">
-        <a class="nav-link" href="">
+	    <li class="nav-item">
+        <a class="nav-link" href="/agenda/listar">
           <i class="fas fa-fw fa-calendar"></i>
           <span>Agenda</span></a>
       </li>
@@ -58,7 +58,7 @@
         <a class="nav-link" href="">
           <i class="fas fa-fw fa-wrench"></i>
           <span>Configurações</span></a>
-      </li>
+    </li>
 	  <li class="nav-item">
         <a class="nav-link" href="">
           <i class="fas fa-fw fa-user"></i>
@@ -103,54 +103,34 @@
                             <table id="tbl-itens" class="table table-hover" cellspacing="0" width='100%'>
                                 <thead class="thead-dark">
                                     <tr>
-                                      <th>Dia</th>
+                                      <th>Data e Hora</th>
+                                      <th>Dono</th>
                                       <th>Pet</th>
-                                      <th>OBS</th>
+                                      <th>Veterinário(a)</th>
+                                      <th>Motivo</th>
+                                      <th>Compareceu</th>
+                                      <th></th>
                                       <th width="6%">Ação</th>
                                     </tr>
                                 </thead>
-								<tbody>
-								<tr data-toggle="modal" data-target="#modalExemplo">
-								 <!-- <td><%= dados[i].nome_raca %></td> -->
-                                              <!-- <td><%= dados[i].nome_especie %></td>        -->
-                                              <td>23</td>
-                                              <td>Jeferson</td>
-                                              <td>Consulta</td>
-                                              <td> <a class="edit" href="editar?id=<%=dados[i].id_raca%>"><i class="fas fa-pencil-alt"></i></a>&nbsp;<a class="edit" href="deletar?id=<%=dados[i].id_raca%>"><i class="fas fa-trash-alt"></i></a>&nbsp;<a class="edit" href="visualizar?id=<%=dados[i].id_raca%>"><i class="fas fa-eye"></i></a></td>                                              
+								              <tbody>
+                                  <% for(var i = 0; i < dados.length; i++) { %>
+                                    <tr>
+                                        <td><%= dados[i].data %>&nbsp;<a class="edit" href="editarData?id=<%=dados[i].id_agenda%>"><i class="fas fa-calendar-alt"></i></a></td>
+                                        <td><%= dados[i].nome_dono %> <%= dados[i].sobrenome_dono %></td>
+                                        <td><%= dados[i].nome %></td>
+                                        <td><%= dados[i].nome_usuario %> <%= dados[i].sobrenome_usuario %></td>
+                                        <td><%= dados[i].motivo %></td>
+                                        <td><%= dados[i].compareceu %></td>
+                                        <td><a class="edit" href="compareceu_sim?id=<%=dados[i].id_agenda%>"><i class="fas fa-calendar-check"></i></a>&nbsp;<a class="edit" href="compareceu_nao?id=<%=dados[i].id_agenda%>"><i class="fas fa-calendar-times"></i></a></td>
+                                        <td><a class="edit" href="editar?id=<%=dados[i].id_agenda%>"><i class="fas fa-pencil-alt"></i></a>&nbsp;<a class="edit" href="deletar?id=<%=dados[i].id_agenda%>"><i class="fas fa-trash-alt"></i></a>&nbsp;<a class="edit" href="visualizar?id=<%=dados[i].id_agenda%>"><i class="fas fa-eye"></i></a></td>
                                     </tr>
-<tr>
-								 <!-- <td><%= dados[i].nome_raca %></td> -->
-                                              <!-- <td><%= dados[i].nome_especie %></td>        -->
-                                              <td>23</td>
-                                              <td>Jeferson</td>
-                                              <td>Consulta</td>
-                                              <td> <a class="edit" href="editar?id=<%=dados[i].id_raca%>"><i class="fas fa-pencil-alt"></i></a>&nbsp;<a class="edit" href="deletar?id=<%=dados[i].id_raca%>"><i class="fas fa-trash-alt"></i></a>&nbsp;<a class="edit" href="visualizar?id=<%=dados[i].id_raca%>"><i class="fas fa-eye"></i></a></td>                                              
-                                    </tr>									
-								</tbody>
+                                <% } %>                                            						
+								            </tbody>
                             </table>
 							
-<!-- Modal -->
-<div class="modal fade" id="modalExemplo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Título do modal</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        AQUI LISTAR A OBS DO QUE FOI SELECIONADO, TIPO 23 JEFERSON CONSULTA X COM X PESSOA (EU CUIDO DO LAYOUT SÓ tenta fazer puxar aqui o "Visualizar nosso vendo o ID do carinha")
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-        <button type="button" class="btn btn-primary">Salvar mudanças</button>
-      </div>
-    </div>
-  </div>
-</div>
                             <div class="pagination">
-                              <!-- <% if (page.pageCount > 1) { %>
+                              <% if (page.pageCount > 1) { %>
                                   
                                       <% if (page.currentPage > 1) { %>
                                           <a href="listar?page=1">&laquo;</a>
@@ -176,7 +156,7 @@
                                           <a href="listar?page=<%= page.pageCount %>">&raquo;</a>
                                       <% } %>
                                   
-                              <% } %> -->
+                              <% } %>
                           </div>
                         </div>
                     </div>

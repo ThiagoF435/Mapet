@@ -10,10 +10,6 @@ UsuarioDAO.prototype.deletar = function(id, callback) {
     this._connection.query('delete from usuario where id_user = '+id, callback)
 }
 
-UsuarioDAO.prototype.editar = function(id, tipoDado, dado, callback) {
-    this._connection.query('update usuario set '+tipoDado+' = "'+dado+'" where id_user = '+id, callback)
-}
-
 UsuarioDAO.prototype.editar = function(id, email, senha, nome, sobrenome, data_nasc, rg, cargo, telefone, callback) {
     this._connection.query('update usuario set email = "'+email+'", senha = "'+senha+'", nome = "'+nome+'", sobrenome = "'+sobrenome+'", data_nasc = "'+data_nasc+'", rg = "'+rg+'", cargo = "'+cargo+'", telefone = "'+telefone+'" where id_user = '+id, callback)
 }
@@ -32,6 +28,10 @@ UsuarioDAO.prototype.pesquisar = function(obj, callback) {
 
 UsuarioDAO.prototype.pesquisarId = function(id, callback) {
     this._connection.query('select * from usuario where id_user = '+id, callback)
+}
+
+UsuarioDAO.prototype.pesquisarVeterinarios = function(callback) {
+    this._connection.query('select * from usuario where cargo like "%eteri%"', callback)
 }
 
 module.exports = function() {

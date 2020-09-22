@@ -32,7 +32,9 @@ module.exports.editar = function(app, req, res) {
     var model = new app.app.models.EspecieDAO(conn)
 
     model.pesquisarId(id, function(err, result) {
-        res.render('especies/editar', {validacao : {}, id : id, dados : result })
+        if(err) throw err
+
+        res.render('especies/editar', {id : id, dados : result })
     })
 }
 
@@ -42,7 +44,9 @@ module.exports.visualizar = function(app, req, res) {
     var model = new app.app.models.EspecieDAO(conn)
 
     model.pesquisarId(id, function(err, result) {
-        res.render('especies/visualizar', {validacao : {}, dados : result })
+        if(err) throw err
+
+        res.render('especies/visualizar', {dados : result })
     })
 }
 

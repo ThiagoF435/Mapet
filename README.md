@@ -43,6 +43,7 @@ Dentro da pasta, execute o seguinte comando:
 git clone https://gitlab.com/mapet1/mapet.git
 ```
 
+<h3>Node Modules</h3>
 Após isso o projeto inteiro já será baixado em uma pasta com o nome "mapet". Entre na pasta através do CMD, e execute o seguinte comando:
 
 ```
@@ -50,11 +51,23 @@ npm install
 ```
 
 Esse comando instala todas as bibliotecas necessárias para executar o projeto.
-Ainda é preciso configurar e ligar o banco de dados, para isso copie a pasta "mapet" fica em dentro da pasta config, dentro da pasta database.
-Depois vá até o local onde o XAMPP foi instalado, normalmente "C:\xampp", entre na pasta mysql e depois na pasta data. E cole a pasta "mapet" dentro
-da pasta data. Depois volte até a pasta xampp e abra o painel de controle "xampp-control" e clique no botão "Start" referente ao MySQL.
-Com isso o banco de dados já esta configurado e funcional. É necessário ligar o MySQL através do painel de controle <b>toda vez</b> que quiser abrir o projeto.
 
+<h3>MySQL</h3>
+Ainda é preciso configurar e ligar o banco de dados, para isso  vá até o local onde o XAMPP foi instalado, normalmente "C:\xampp", execute 
+o painel de controle "xampp-control" e clique no botão "Start" referente ao MySQL. Depois abra um CMD, e dentro da basta xampp navegue pelas
+pastas mysql e depois bin. Dentro da basta bin execute o seguinte comando: 
+
+```
+mysql -u root
+```
+
+Esse comando ira acessar o MySQL através do CMD. Depois vá até a pasta do projeto, na pasta config > database > terá um arquivo txt chamado scrip.
+Basta copiar todo o conteúdo do arquivo e executar no MySQL. Com isso você terá criado o banco de dados e todas as tabelas do projeto. É necessário
+fazer isso após uma vez. Tendo isso feito você pode popular as tabelas através do site, ou do próprio CMD.
+
+É necessário ligar o MySQL através do painel de controle <b>toda vez</b> que quiser abrir o projeto.
+
+<h3>Executando o projeto</h3>
 Finalmnente para executar o projeto, abra o CMD e navegue até a pasta "mapet" do projeto e digite o seguinte comando:
 
 ``` 
@@ -79,6 +92,24 @@ Ao criar ou editar qualquer arquivo, deve ser respeitado os padrões já present
 
 <h1>Utilizando o GIT<h1>
 
+Para atualizar sua versão local com a versão do github, primeiro garanta que esta na branch desejada. Para fazer isso acesse a pasta do projeto
+pelo cmd e digite o comando:
+
+```
+git switch test 
+
+ou
+
+git switch master
+```
+
+Lembrando que a branch de desenvolvimento é a test, a master é para entrega final das sprints. Então prvavelmente você deverá usar a branch test para atualizar
+seus arquivos locais. E pra fazer isso digite o comando:
+
+```
+git pull
+```
+
 Ao concluir alguma tarefa do projeto, é necessário enviar os arquivos que foram atualizados para a nuvem. Para isso basta executar os seguintes comandos:
 
 ```
@@ -91,3 +122,23 @@ O comando "git add ." adiciona todos os arquivos que sofreram alteração para o
 push envia os dados para a nuvem. Lembrem sempre de enviarem os arquivos para a branch "test". Para isso basta utilizar o comando acima "git push -u origin test".
 <b>Não utilizar o comando</b> "git push -u origin master" pois ele vai enviar as alterações para a versão final do projeto. A versão final só deve ser alterada
 a cada sprint. Ela será utilizada para a entrega semanal do projeto.
+
+<h1>Sprint 1</h1>
+
+<b>Concluído</b>
+<ul>
+<li>Painel de controle do admin</li>
+<li>Cadastro de usuários</li>
+<li>Cadastro de clientes</li>
+</ul>
+
+<h1>Sprint 2</h1>
+
+<b>Concluído</b>
+<ul>
+<li>CRUD completo do usuário</li>
+<li>CRUD completo do cliente</li>
+<li>CRUD completo da especie</li>
+<li>CRUD completo da raça</li>
+</ul>
+

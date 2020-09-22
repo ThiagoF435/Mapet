@@ -32,7 +32,9 @@ module.exports.editar = function(app, req, res) {
     var model = new app.app.models.UsuarioDAO(conn)
 
     model.pesquisarId(id, function(err, result) {
-        res.render('usuarios/editar', {validacao : {}, id : id, dados : result })
+        if(err) throw err
+
+        res.render('usuarios/editar', {id : id, dados : result })
     })
 }
 
@@ -42,7 +44,9 @@ module.exports.visualizar = function(app, req, res) {
     var model = new app.app.models.UsuarioDAO(conn)
 
     model.pesquisarId(id, function(err, result) {
-        res.render('usuarios/visualizar', {validacao : {}, dados : result })
+        if(err) throw err
+
+        res.render('usuarios/visualizar', {dados : result })
     })
 }
 

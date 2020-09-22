@@ -5,9 +5,13 @@ module.exports.cadastrar = function(app, req, res) {
     var modelCliente = new app.app.models.ClienteDAO(conn)
 
     modelEspecie.pesquisar('', function(err, resultEspecie) {
+        if(err) throw err
         modelRaca.pesquisar('', function(err, resultRaca) {
+            if(err) throw err
             modelCliente.pesquisar('', function(err, resultCliente) {
-                res.render('animais/cadastrar', {validacao : {}, dadosEspecie : resultEspecie, dadosRaca: resultRaca, dadosCliente : resultCliente})
+                if(err) throw err
+
+                res.render('animais/cadastrar', {dadosEspecie : resultEspecie, dadosRaca: resultRaca, dadosCliente : resultCliente})
             })
         })
     })
@@ -46,10 +50,15 @@ module.exports.editar = function(app, req, res) {
     var modelCliente = new app.app.models.ClienteDAO(conn)
 
     modelEspecie.pesquisar('', function(err, resultEspecie) {
+        if(err) throw err
         modelRaca.pesquisar('', function(err, resultRaca) {
+            if(err) throw err
             modelCliente.pesquisar('', function(err, resultCliente) {
+                if(err) throw err
                 model.pesquisarId(id, function(err, result) {
-                    res.render('animais/editar', {validacao : {}, id : id, dados : result, dadosEspecie : resultEspecie, dadosRaca: resultRaca, dadosCliente : resultCliente})
+                    if(err) throw err
+
+                    res.render('animais/editar', {id : id, dados : result, dadosEspecie : resultEspecie, dadosRaca: resultRaca, dadosCliente : resultCliente})
                 })
             })
         })
@@ -60,18 +69,11 @@ module.exports.visualizar = function(app, req, res) {
     var id = parseInt(req.query.id)
     var conn = app.config.databaseConnection()
     var model = new app.app.models.AnimalDAO(conn)
-    var modelEspecie = new app.app.models.EspecieDAO(conn)
-    var modelRaca = new app.app.models.RacaDAO(conn)
-    var modelCliente = new app.app.models.ClienteDAO(conn)
 
-    modelEspecie.pesquisar('', function(err, resultEspecie) {
-        modelRaca.pesquisar('', function(err, resultRaca) {
-            modelCliente.pesquisar('', function(err, resultCliente) {
-                model.pesquisarId(id, function(err, result) {
-                    res.render('animais/visualizar', {validacao : {}, id : id, dados : result, dadosEspecie : resultEspecie, dadosRaca: resultRaca, dadosCliente : resultCliente})
-                })
-            })
-        })
+    model.pesquisarId(id, function(err, result) {
+        if(err) throw err
+        
+        res.render('animais/visualizar', {id : id, dados : result})
     })
 }
 

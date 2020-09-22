@@ -81,9 +81,9 @@
                     <!-- Page Heading -->
                 <nav class="navbar navbar-light bg-white" style="padding-bottom: 0px;padding-top: 0px;height: 80px; margin-bottom: 1%;">
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800 pt-3">Visualizar Raça</h1>
+                        <h1 class="h3 mb-0 text-gray-800 pt-3">Visualizar Agenda</h1>
                     </div>                    
-                    <a href="/racas/listar"><button id="btn-cancelar" class="btn btn-primary" style="float:right;margin-right: 2%;">Voltar</button></a> 
+                    <a href="/agenda/listar"><button id="btn-cancelar" class="btn btn-primary" style="float:right;margin-right: 2%;">Voltar</button></a> 
                  </nav>
                     <section class="page-content">
                         <div class="container">
@@ -93,24 +93,54 @@
                                         <div class="row no-gutters align-items-center">
                                             <div class="col-md-12 pr-2">
                                                 <div class="form-group">
-                                                    <label style="font-weight: bold;">Raça:</label>
+                                                    <label style="font-weight: bold;">Data e Hora:</label>
                                                     <label>
                                                         <% for(var i = 0; i < dados.length; i++) { %>
-                                                            <%= dados[i].nome_raca %>
+                                                        <%= dados[i].data %>
                                                         <% } %>
+                                                    </label>                                                 
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 pr-2">
+                                                <div class="form-group">
+                                                    <label style="font-weight: bold;">Dono:</label>
+                                                    <label>
+                                                        <% for(var i = 0; i < dados.length; i++) { %>
+                                                            <%= dados[i].nome_dono %> <%= dados[i].sobrenome_dono %>
+                                                        <% } %>                                                       
                                                     </label>                                                    
                                                 </div>
                                             </div>
                                             <div class="col-md-12 pr-2">
                                                 <div class="form-group">
-                                                    <label style="font-weight: bold;">Espécie:</label>
+                                                    <label style="font-weight: bold;">Animal:</label>
                                                     <label>
                                                         <% for(var i = 0; i < dados.length; i++) { %>
-                                                            <%= dados[i].nome_especie %>
+                                                            <td><%= dados[i].nome_animal %></td>
                                                         <% } %>
                                                     </label>                                                    
                                                 </div>
-                                            </div>                                            
+                                            </div>  
+                                            <div class="col-md-12 pr-2">
+                                                <div class="form-group">
+                                                    <label style="font-weight: bold;">Veterinário(a):</label>
+                                                    <label>
+                                                        <% for(var i = 0; i < dados.length; i++) { %>
+                                                            <td><%= dados[i].nome_usuario %><%= dados[i].sobrenome_usuario %></td>
+                                                        <% } %>
+                                                    </label>                                                    
+                                                </div>
+                                            </div>  
+                                            <div class="col-md-12 pr-2">
+                                                <div class="form-group">
+                                                    <label style="font-weight: bold;">Motivo:</label>
+                                                    <label>
+                                                        <% for(var i = 0; i < dados.length; i++) { %>
+                                                            <%= dados[i].motivo %>
+                                                        <% } %>
+                                                    </label>                                                    
+                                                </div>
+                                            </div>                                         
                                         </div>                               
                                 </div>
                             </div>  
