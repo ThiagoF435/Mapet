@@ -1,5 +1,9 @@
 var app = require('./config/server')
+var express = require('express')
+var fs = require('fs')
+var http = require('http')
+var https = require('https')
 
-app.listen(3000, function() {
+app.listen(process.env.PORT, function() {
     console.log('Server on!')
 })
