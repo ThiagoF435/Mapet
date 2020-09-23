@@ -50,7 +50,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="">
+                <a class="nav-link" href="/agenda/listar">
                     <i class="fas fa-fw fa-calendar"></i>
                     <span>Agenda</span>
                 </a>
@@ -85,14 +85,6 @@
                             </div>
                             <a href="/usuarios/listar"><button id="btn-cancelar" class="btn btn-primary btn-md"  style=" float:right;margin-right: 2%;">Cancelar</button></a>         
                     </nav>
-                    <% if(validacao.length > 0) { %>
-                        <strong>Atenção!</strong>
-                        <ul>
-                            <% for(var i = 0; i < validacao.length; i++) { %>
-                                <li><%= validacao[i].msg %></li>
-                                <% } %>
-                            </ul>
-                            <% } %> 
                     <section class="page-content">
                                 <div class="container">
                         <div class="col-md-12">
