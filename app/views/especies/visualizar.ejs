@@ -21,7 +21,7 @@
             color: black;
         }
     </style>
-<link rel="shortcut icon" href="img/favicon-32x32.png">
+    <link rel="shortcut icon" href="img/favicon-32x32.png">
 </head>
 
 <body id="page-top">
@@ -40,7 +40,7 @@
                 <div class="sidebar-brand-text mx-3">Mapet</div>
             </a>
             <!-- Divider -->
-      <hr class="sidebar-divider my-0">
+            <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
@@ -56,9 +56,9 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="">
+                <a class="nav-link" href="/historico/listar">
                     <i class="fas fa-fw fa-wrench"></i>
-                    <span>Configurações</span>
+                    <span>Históricos</span>
                 </a>
             </li>
             <li class="nav-item">
@@ -79,33 +79,31 @@
                 <div class="container-fluid" style="padding-right: 0px; padding-left: 0px;">
 
                     <!-- Page Heading -->
-                <nav class="navbar navbar-light bg-white" style="padding-bottom: 0px;padding-top: 0px;height: 80px; margin-bottom: 1%;">
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800 pt-3">Visualizar Espécie</h1>
-                    </div>                    
-                    <a href="/especies/listar"><button id="btn-cancelar" class="btn btn-primary" style="float:right;margin-right: 2%;">Voltar</button></a> 
-                 </nav>
+                    <nav class="navbar navbar-light bg-white" style="padding-bottom: 0px;padding-top: 0px;height: 80px; margin-bottom: 1%;">
+                        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                            <h1 class="h3 mb-0 text-gray-800 pt-3">Visualizar Espécie</h1>
+                        </div>
+                        <a href="/especies/listar"><button id="btn-cancelar" class="btn btn-primary" style="float:right;margin-right: 2%;">Voltar</button></a>
+                    </nav>
                     <section class="page-content">
                         <div class="container">
-                        <div class="col-md-12">
-                            <div id="div-table-content" class="card show">
-                                <div class="card-body">
+                            <div class="col-md-12">
+                                <div id="div-table-content" class="card show">
+                                    <div class="card-body">
                                         <div class="row no-gutters align-items-center">
-                                            <div class="col-md-12 pr-2">
+                                            <div class="col-md-12 mt-3">
                                                 <div class="form-group">
                                                     <label style="font-weight: bold;">Nome:</label>
                                                     <label>
-                                                        <% for(var i = 0; i < dados.length; i++) { %>
-                                                            <%= dados[i].nome_especie %>
-                                                        <% } %>
-                                                    </label>                                                   
+                                                        <%= dados[0].nome_especie %>
+                                                    </label>
                                                 </div>
                                             </div>
-                                        </div>                               
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>  
+                            </div>
                         </div>
-                    </div>
                     </section>
                 </div>
             </div>

@@ -21,7 +21,7 @@
             color: black;
         }
     </style>
-<link rel="shortcut icon" href="img/favicon-32x32.png">
+    <link rel="shortcut icon" href="img/favicon-32x32.png">
 </head>
 
 <body id="page-top">
@@ -40,7 +40,7 @@
                 <div class="sidebar-brand-text mx-3">Mapet</div>
             </a>
             <!-- Divider -->
-      <hr class="sidebar-divider my-0">
+            <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
@@ -56,9 +56,9 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="">
+                <a class="nav-link" href="/historico/listar">
                     <i class="fas fa-fw fa-wrench"></i>
-                    <span>Configurações</span>
+                    <span>Históricos</span>
                 </a>
             </li>
             <li class="nav-item">
@@ -79,86 +79,75 @@
                 <div class="container-fluid" style="padding-right: 0px; padding-left: 0px;">
 
                     <!-- Page Heading -->
-                <nav class="navbar navbar-light bg-white" style="padding-bottom: 0px;padding-top: 0px;height: 80px; margin-bottom: 1%;">
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800 pt-3">Atualizar Funcionário</h1>
-                    </div>                    
-                    <a href="/usuarios/listar"><button id="btn-cancelar" class="btn btn-primary" style="float:right;margin-right: 2%;">Cancelar</button></a> 
-                 </nav>
+                    <nav class="navbar navbar-light bg-white" style="padding-bottom: 0px;padding-top: 0px;height: 80px; margin-bottom: 1%;">
+                        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                            <h1 class="h3 mb-0 text-gray-800 pt-3">Atualizar Funcionário</h1>
+                        </div>
+                        <a href="/usuarios/listar"><button id="btn-cancelar" class="btn btn-primary" style="float:right;margin-right: 2%;">Cancelar</button></a>
+                    </nav>
                     <section class="page-content">
                         <div class="container">
-                        <div class="col-md-12">
-                            <div id="div-table-content" class="card show">
-                                <div class="card-body">
-                                    <form action="/usuarios/salvar_edicao" name="form" method="POST" onsubmit="return validateFormUsuario()" role="form">
-                                        <div class="row no-gutters align-items-center">
-                                            <% for(var i = 0; i < dados.length; i++) { %>
-                                            <div class="col-md-6 pr-2">
-                                                <div class="form-group">
-                                                    <label>
-                                                        Nome <span class="required">*</span>
-                                                    </label>
-                                                    <input type="text" name="nome" placeholder="<%= dados[i].nome %>" class="form-control">
+                            <div class="col-md-12">
+                                <div id="div-table-content" class="card show">
+                                    <div class="card-body">
+                                        <form action="/usuarios/salvar_edicao" name="form" method="POST" onsubmit="return validateFormUsuario()" role="form">
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col-md-6 pr-2">
+                                                    <div class="form-group">
+                                                        <label>
+                                                            Nome <span class="required">*</span>
+                                                        </label>
+                                                        <input type="text" name="nome" placeholder="<%= dados[0].nome %>" class="form-control">
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label>
-                                                        Sobrenome <span class="required">*</span>
-                                                    </label>
-                                                    <input type="text" name="sobrenome" placeholder="<%= dados[i].sobrenome %>" class="form-control">
+                                                <div class="col-md-6 pr-2">
+                                                    <div class="form-group">
+                                                        <label>RG <span class="required">*</span></label>
+                                                        <input type="text" name="rg" placeholder="<%= dados[0].rg %>" value="<%= dados[0].rg %>" class="form-control">
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label>RG <span class="required">*</span></label>
-                                                    <input type="text" name="rg" placeholder="<%= dados[i].rg %>" value="<%= dados[i].rg %>" class="form-control">
+                                                <div class="col-md-6 pr-2">
+                                                    <div class="form-group">
+                                                        <label>
+                                                            Telefone <span class="required"></span>
+                                                        </label>
+                                                        <input type="number" name="telefone" placeholder="<%= dados[0].telefone %>" class="form-control">
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-6 pr-2">
-                                                <div class="form-group">
-                                                    <label>
-                                                        Telefone <span class="required"></span>
-                                                    </label>
-                                                    <input type="number" name="telefone" placeholder="<%= dados[i].telefone %>" class="form-control">
+                                                <div class="col-md-6 pr-2">
+                                                    <div class="form-group">
+                                                        <label>Data de Nascimento <span class="required">*</span></label>
+                                                        <input type="date" placeholder="<%= dados[0].data_nasc %>" name="data_nasc" class="form-control">
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-6 pr-2">
-                                              <div class="form-group">
-                                                  <label>Data de Nascimento <span class="required">*</span></label>
-                                                  <input type="date" placeholder="<%= dados[i].data_nasc %>" name="data_nasc" class="form-control">
-                                              </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                              <div class="form-group">
-                                                  <label>Cargo <span class="required">*</span></label>
-                                                  <input type="text" name="cargo" placeholder="<%= dados[i].cargo %>" class="form-control">
-                                                </select>
-                                              </div>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label>Email <span class="required">*</span></label>
-                                                    <input type="email" name="email" placeholder="<%= dados[i].email %>" class="form-control">
+                                                <div class="col-md-12 pr-2">
+                                                    <div class="form-group">
+                                                        <label>Cargo <span class="required">*</span></label>
+                                                        <input type="text" name="cargo" placeholder="<%= dados[0].cargo %>" class="form-control">
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-6 pr-2">
-                                                <div class="form-group">
-                                                    <label>
-                                                        Senha <span class="required">*</span>
-                                                    </label>
-                                                    <input type="password" name="senha" class="form-control">
+                                                <div class="col-md-6 pr-2">
+                                                    <div class="form-group">
+                                                        <label>Email <span class="required">*</span></label>
+                                                        <input type="email" name="email" placeholder="<%= dados[0].email %>" class="form-control">
+                                                    </div>
                                                 </div>
-                                                <input type="hidden" id="id" name="id" value="<%=id%>">
+                                                <div class="col-md-6 pr-2">
+                                                    <div class="form-group">
+                                                        <label>
+                                                            Senha <span class="required">*</span>
+                                                        </label>
+                                                        <input type="password" name="senha" class="form-control">
+                                                    </div>
+                                                    <input type="hidden" id="id" name="id" value="<%=id%>">
+                                                </div>
                                                 <button type="submit" class="btn btn-primary">Atualizar</button>
                                             </div>
-                                        </div>
-                                        <% } %>
-                                    </form>                                    
+                                        </form>
+                                    </div>
                                 </div>
-                            </div>      
+                            </div>
                         </div>
-                    </div>
                     </section>
                 </div>
             </div>

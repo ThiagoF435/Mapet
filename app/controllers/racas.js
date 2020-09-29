@@ -27,7 +27,9 @@ module.exports.deletar = function(app, req, res) {
     var id = parseInt(req.query.id)
 
     model.deletar(id, function(err, result) {
-        if(err) throw err
+        if(err) {
+            console.log('Não é possível deletar dados conectados')
+        } 
 
         res.redirect('/racas/listar')
     })

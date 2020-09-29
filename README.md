@@ -123,22 +123,24 @@ push envia os dados para a nuvem. Lembrem sempre de enviarem os arquivos para a 
 <b>Não utilizar o comando</b> "git push -u origin master" pois ele vai enviar as alterações para a versão final do projeto. A versão final só deve ser alterada
 a cada sprint. Ela será utilizada para a entrega semanal do projeto.
 
-<h1>Sprint 1</h1>
+<h1>Sprint 5</h1>
 
-<b>Concluído</b>
-<ul>
-<li>Painel de controle do admin</li>
-<li>Cadastro de usuários</li>
-<li>Cadastro de clientes</li>
-</ul>
+O que foi feito pela equipe backend para a Sprint 5
+- Corrigiu cadastro e edição dos animais (pets)
+- Corrigiu cadastro e edição da agenda 
+- Colocado link pro dono, pet e veterinário na agenda e no histórico
+- Mudanças em todo o banco de nome e sobrenome para apenas nome
+- Edição das datas, agora são exibidas de forma mais simples e agradável (mas ainda em inglês)
+- Corrigido crash do site ao tentar deletar dados conectados
+- É possível visualizar todas as consultas de determinado pet em sua página de visualizar
+- Página de listar, visualizar e pesquisar o histórico. Não foi feito editar ou deletar pois não seria certo poder editar ou deletar históricos, por serem documentos
 
-<h1>Sprint 2</h1>
+Anotações para discutir com o Fernando na entrega da Sprint 5
+- Sobre mudar a linguagem da data, pois é um sistema limitado do próprio HTML que não tem suporte para o português
 
-<b>Concluído</b>
-<ul>
-<li>CRUD completo do usuário</li>
-<li>CRUD completo do cliente</li>
-<li>CRUD completo da especie</li>
-<li>CRUD completo da raça</li>
-</ul>
+O que precisa ser arrumado pela equipe front para a sprint 5
+- Padronizar todas as tabelas de listar como esta na tabela agenda/histórico
+- Alinhar a página editar dos animais (pets)
+- Alinhar a página cadastrar dos funcionários 
+- Aumentar a combobox do dono na página de cadastro do animal (pet)
 

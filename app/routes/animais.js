@@ -3,6 +3,10 @@ module.exports = function(app) {
         app.app.controllers.animais.cadastrar(app, req, res)
     })
 
+    app.post('/animais/cadastrar2', function(req, res) {
+        app.app.controllers.animais.cadastrar2(app, req, res)
+    })
+
     app.post('/animais/salvar_cadastro', function(req, res) {
         app.app.controllers.animais.salvarCadastro(app, req, res)
     })

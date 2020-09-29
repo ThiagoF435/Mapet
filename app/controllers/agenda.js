@@ -1,18 +1,34 @@
 module.exports.cadastrar = function(app, req, res) {
     var conn = app.config.databaseConnection()
-    var modelAnimal = new app.app.models.AnimalDAO(conn)
     var modelCliente = new app.app.models.ClienteDAO(conn)
     var modelUsuario = new app.app.models.UsuarioDAO(conn)
 
-    modelAnimal.pesquisar('', function(err, resultAnimal) {
+    modelCliente.pesquisar('', function(err, resultCliente) {
         if(err) throw err
-        modelCliente.pesquisar('', function(err, resultCliente) {
+        modelUsuario.pesquisarVeterinarios(function(err, resultUsuario) {
             if(err) throw err
-            modelUsuario.pesquisarVeterinarios(function(err, resultUsuario) {
+
+            res.render('agenda/cadastrar', {dadosCliente : resultCliente, dadosUsuario : resultUsuario})
+        })
+    })
+}
+
+module.exports.cadastrar2 = function(app, req, res) {
+    var conn = app.config.databaseConnection()
+    var modelAnimal = new app.app.models.AnimalDAO(conn)
+    var modelCliente = new app.app.models.ClienteDAO(conn)
+    var modelUsuario = new app.app.models.UsuarioDAO(conn)
+    var obj = req.body
+
+    modelAnimal.pesquisarIdDono(obj.id_dono, function(err, resultAnimal) {
+        if(err) throw err
+        modelCliente.pesquisarId(obj.id_dono, function(err, resultCliente) {
+            if(err) throw err
+            modelUsuario.pesquisarId(obj.id_user, function(err, resultUsuario) {
                 if(err) throw err
 
-                res.render('agenda/cadastrar', {dadosAnimal : resultAnimal, dadosCliente : resultCliente, dadosUsuario : resultUsuario})
-            })
+                res.render('agenda/cadastrar2', {dados : obj, dadosAnimal : resultAnimal, dadosCliente : resultCliente, dadosUsuario : resultUsuario})
+            }) 
         })
     })
 }
@@ -35,34 +51,33 @@ module.exports.deletar = function(app, req, res) {
     var id = parseInt(req.query.id)
 
     model.deletar(id, function(err, result) {
-        if(err) throw err
+        if(err) {
+            console.log('Não é possível deletar dados conectados')
+        } 
 
         res.redirect('/agenda/listar')
     })
 }
 
 module.exports.editar = function(app, req, res) {
-    var id = parseInt(req.query.id)
+    var id_agenda = parseInt(req.query.id_agenda)
+    var id_dono = parseInt(req.query.id_dono)
     var conn = app.config.databaseConnection()
     var modelAgenda = new app.app.models.AgendaDAO(conn)
     var modelAnimal = new app.app.models.AnimalDAO(conn)
-    var modelCliente = new app.app.models.ClienteDAO(conn)
     var modelUsuario = new app.app.models.UsuarioDAO(conn)
 
-    modelAnimal.pesquisar('', function(err, resultAnimal) {
+    modelAnimal.pesquisarIdDono(id_dono, function(err, resultAnimal) {
         if(err) throw err
-        modelCliente.pesquisar('', function(err, resultCliente) {
-            if(err) throw err
-            modelAgenda.pesquisarId(id, function(err, resultAgenda) {
+            modelAgenda.pesquisarId(id_agenda, function(err, resultAgenda) {
                 if(err) throw err
                 modelUsuario.pesquisarVeterinarios(function(err, resultUsuario) {
                     if(err) throw err
 
-                    res.render('agenda/editar', {id : id, dadosAgenda : resultAgenda, dadosAnimal : resultAnimal, dadosCliente : resultCliente, dadosUsuario : resultUsuario})
+                    res.render('agenda/editar', {id : id_agenda, dadosAgenda : resultAgenda, dadosAnimal : resultAnimal, dadosUsuario : resultUsuario})
                 })
             })
         })
-    })
 }
 
 module.exports.editarData = function(app, req, res) {
@@ -102,12 +117,10 @@ module.exports.salvarEdicao = function(app, req, res) {
             obj.motivo = result[0].motivo
         if(obj.id_user == '') 
             obj.id_user = result[0].id_user
-        if(obj.id_dono == '') 
-            obj.id_dono = result[0].id_dono
         if(obj.id_animal == '') 
             obj.id_animal = result[0].id_animal
         
-        model.editar(id, obj.motivo, obj.id_user, obj.id_dono, obj.id_animal, function(err, result) {
+        model.editar(id, obj.motivo, obj.id_user, obj.id_animal, function(err, result) {
             if(err) throw err
     
             res.redirect('/agenda/listar')

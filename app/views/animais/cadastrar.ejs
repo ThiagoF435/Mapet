@@ -54,10 +54,10 @@
           <i class="fas fa-fw fa-calendar"></i>
           <span>Agenda</span></a>
       </li>
-	  <li class="nav-item">
-        <a class="nav-link" href="">
+      <li class="nav-item">
+        <a class="nav-link" href="/historico/listar">
           <i class="fas fa-fw fa-wrench"></i>
-          <span>Configurações</span></a>
+          <span>Históricos</span></a>
       </li>
 	  <li class="nav-item">
         <a class="nav-link" href="">
@@ -88,7 +88,7 @@
 						<div class="col-md-12">
               <div id="div-table-content" class="card show  mb-1">
 								<div class="card-body">                  
-								<form action="/animais/salvar_cadastro" name="form" method="POST" onsubmit="return validateFormAnimal()" role="form">
+								<form action="/animais/cadastrar2" name="form" method="POST" onsubmit="return validateFormAnimal()" role="form">
                   <div class="row no-gutters align-items-center">
                     <div class="col-md-12 pr-2">
                         <div class="form-group">
@@ -115,35 +115,9 @@
                                 <option value="<%=dadosEspecie[i].nome_especie%>"><%=dadosEspecie[i].nome_especie%></option>
                             <% } %>
                         </select>
-                </div>
-                  </div>
-                <div class="col-md-6 pr-2">
-                    <div class="form-group">
-                        <label>
-                            Raça <span class="required">*</span>
-                        </label>
-                        <select name="nome_raca" class="form-control" required>
-                          <option value=''>Selecionar</option>
-                            <% for(var i = 0; i < dadosRaca.length; i++) { %>
-                                <option value="<%=dadosRaca[i].nome_raca%>"><%=dadosRaca[i].nome_raca%></option>
-                            <% } %>
-                        </select>
                     </div>
                 </div>
-                <div class="col-md-6 pr-2">
-                  <div class="form-group">
-                      <label>
-                          Dono <span class="required">*</span>
-                      </label>
-                      <select name="id_dono" class="form-control" required>
-                        <option value=''>Selecionar</option>
-                          <% for(var i = 0; i < dadosCliente.length; i++) { %>
-                              <option value="<%=dadosCliente[i].id_dono%>"><%=dadosCliente[i].nome%> <%=dadosCliente[i].sobrenome%> - CPF: <%=dadosCliente[i].cpf%></option>
-                          <% } %>
-                      </select>
-                  </div>
-              </div>
-                  <button type="submit" class="btn btn-primary mt-1">Registrar</button>
+                <button type="submit" class="btn btn-primary mt-1">Continuar</button>
                 </form>
 							</div>
 						</div>

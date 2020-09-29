@@ -1,13 +1,8 @@
-create database mapet;
-
-use mapet;
-
 create table usuario
 (id_user int(9) auto_increment primary key, 
 email varchar(40) not null, 
 senha varchar(20) not null, 
-nome varchar(40) not null, 
-sobrenome varchar(40) not null, 
+nome varchar(100) not null, 
 data_nasc varchar(10) not null, 
 rg varchar(09) not null, 
 cpf varchar(11) not null, 
@@ -17,8 +12,7 @@ telefone varchar (13));
 create table cliente
 (id_dono int(9) auto_increment primary key, 
 email varchar(40) not null, 
-nome varchar(40) not null, 
-sobrenome varchar(40) not null, 
+nome varchar(100) not null, 
 data_nasc varchar(10) not null, 
 rg varchar(09) not null, 
 cpf varchar(11) not null, 
@@ -33,7 +27,6 @@ data_nasc varchar(10) not null,
 nome_especie varchar(40) not null, 
 nome_raca varchar(40) not null); 
 
-
 create table especie
 (id_especie int(9) auto_increment primary key, 
 nome_especie varchar(40) not null);
@@ -46,8 +39,11 @@ foreign key (id_especie) references especie(id_especie));
 
 create table agenda
 (id_agenda int(9) auto_increment primary key, 
-motivo varchar(40) not null, 
-compareceu  varchar(01), 
+motivo varchar(100) not null, 
+compareceu  varchar(03), 
+data datetime,
+id_user int(9),
+foreign key (id_user) references usuario(id_user),
 id_dono int(9),
 foreign key (id_dono) references cliente(id_dono),
 id_animal int(9),
@@ -55,11 +51,13 @@ foreign key (id_animal) references animal(id_animal));
 
 create table historico
 (id_historico int(9) auto_increment primary key, 
-descricao varchar(100), 
-diagnostico varchar(40), 
-vacina varchar(40), 
-remedio varchar (40), 
-conclusao varchar (40), 
+descricao varchar(500), 
+diagnostico varchar(100), 
+vacina varchar(100), 
+remedio varchar (100), 
+conclusao varchar (100), 
+id_user int(9),
+foreign key (id_user) references usuario(id_user),
 id_animal int(9),
 foreign key (id_animal) references animal(id_animal),
 id_agenda int(9),

@@ -80,52 +80,70 @@
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800 pt-3">Agendar</h1>
           </div>
-          <a href="/agenda/listar"><button id="btn-cancelar" class="btn btn-primary">Cancelar</button></a>      
+          <a href="/agenda/cadastrar"><button id="btn-cancelar" class="btn btn-primary">Cancelar</button></a>      
           </nav>
 
       <section class="page-content">
         <div class="container">
 						<div class="col-md-12">
               <div id="div-table-content" class="card show  mb-1">
-                <div class="card-body">                
-								<form action="/agenda/cadastrar2" name="form" method="POST" role="form">
-									<div class="row no-gutters align-items-center">
-                    <div class="col-lg-6 pr-2">
+                <div class="card-body"> 
+                    <div class="row no-gutters align-items-center">
+                        <div class="col-md-12 pr-2">
+                            <div class="form-group">
+                                <label style="font-weight: bold;">Data e Hora:</label>
+                                <label>
+                                <%= dados.data %>
+                                </label>                                                 
+                            </div>
+                        </div>
+                        <div class="col-md-12 pr-2">
+                            <div class="form-group">
+                                <label style="font-weight: bold;">Veterinário(a):</label>
+                                <label>
+                                <%= dadosUsuario[0].nome %>
+                                </label>                                                    
+                            </div>
+                        </div>  
+                        <div class="col-md-12 pr-2">
+                            <div class="form-group">
+                                <label style="font-weight: bold;">Dono:</label>
+                                <label>
+                                <%= dadosCliente[0].nome %>                                                
+                                </label>                                                    
+                            </div>
+                        </div>                         
+                    </div>                
+                    <form action="/agenda/salvar_cadastro" name="form" method="POST" onsubmit="return validateFormAgenda()" role="form">
+                        <div class="row no-gutters align-items-center">
+                    
+					<div class="col-md-6 pr-2">
                       <div class="form-group">
-                          <label>Data e Hora</label>
-                          <div class="input-group date">
-                              <input type="datetime-local" name="data" class="form-control" required>
-                          </div>
+                          <label>
+                              Pet <span class="required">*</span>
+                          </label>
+                          <select name="id_animal" class="form-control" required>
+                            <option value="">Selecione</option>
+                            <% for(var i = 0; i < dadosAnimal.length; i++) { %>
+                              <option value="<%=dadosAnimal[i].id_animal%>"><%=dadosAnimal[i].nome%></option>
+                            <% } %>
+                          </select>
                       </div>
-                      </div>
-                      <div class="col-md-6 pr-2">
-                        <div class="form-group">
-                            <label>
-                                Veterinário(a) <span class="required">*</span>
-                            </label>
-                            <select name="id_user" class="form-control" required>
-                              <option value="">Selecione</option>
-                              <% for(var i = 0; i < dadosUsuario.length; i++) { %>
-                                <option value="<%=dadosUsuario[i].id_user%>"><%=dadosUsuario[i].nome%></option>
-                              <% } %>
-                            </select>
-                        </div>
+                  </div>
+				  <div class="col-md-12 pr-2">
+                    <div class="form-group">
+                        <label>
+                            Motivo <span class="required">*</span>
+                        </label>
+                            <textarea name="motivo" class="form-control rounded-0" rows="10" required></textarea>
                     </div>
-                      <div class="col-md-6 pr-2">
-                        <div class="form-group">
-                            <label>
-                                Dono <span class="required">*</span>
-                            </label>
-                            <select name="id_dono" class="form-control" required>
-                              <option value="">Selecione</option>
-                              <% for(var i = 0; i < dadosCliente.length; i++) { %>
-                                <option value="<%=dadosCliente[i].id_dono%>"><%=dadosCliente[i].nome %></option>
-                              <% } %>
-                            </select>
-                        </div>
                     </div>
-                    </div>	                   
-                    <button type="submit" class="btn btn-primary">Continuar</button>
+                    </div>	
+                    <input type="hidden" value="<%= dados.data %>" name="data">
+                    <input type="hidden" value="<%= dados.id_user %>" name="id_user">
+                    <input type="hidden" value="<%= dados.id_dono %>" name="id_dono">
+                    <input type="hidden" value="..." name="compareceu">
+                    <button type="submit" class="btn btn-primary">Agendar</button>
                   </form>  
                 </div>
 								</div>

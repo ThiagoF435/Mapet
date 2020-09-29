@@ -3,6 +3,10 @@ module.exports = function(app) {
         app.app.controllers.agenda.cadastrar(app, req, res)
     })
 
+    app.post('/agenda/cadastrar2', function(req, res) {
+        app.app.controllers.agenda.cadastrar2(app, req, res)
+    })
+
     app.post('/agenda/salvar_cadastro', function(req, res) {
         app.app.controllers.agenda.salvarCadastro(app, req, res)
     })

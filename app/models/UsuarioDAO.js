@@ -10,8 +10,8 @@ UsuarioDAO.prototype.deletar = function(id, callback) {
     this._connection.query('delete from usuario where id_user = '+id, callback)
 }
 
-UsuarioDAO.prototype.editar = function(id, email, senha, nome, sobrenome, data_nasc, rg, cargo, telefone, callback) {
-    this._connection.query('update usuario set email = "'+email+'", senha = "'+senha+'", nome = "'+nome+'", sobrenome = "'+sobrenome+'", data_nasc = "'+data_nasc+'", rg = "'+rg+'", cargo = "'+cargo+'", telefone = "'+telefone+'" where id_user = '+id, callback)
+UsuarioDAO.prototype.editar = function(id, email, senha, nome, data_nasc, rg, cargo, telefone, callback) {
+    this._connection.query('update usuario set email = "'+email+'", senha = "'+senha+'", nome = "'+nome+'", data_nasc = "'+data_nasc+'", rg = "'+rg+'", cargo = "'+cargo+'", telefone = "'+telefone+'" where id_user = '+id, callback)
 }
 
 UsuarioDAO.prototype.total = function(callback) {
@@ -23,7 +23,7 @@ UsuarioDAO.prototype.listar = function(perPage, offset, callback) {
 }
 
 UsuarioDAO.prototype.pesquisar = function(obj, callback) {
-    this._connection.query('select * from usuario where nome like "%'+obj+'%" or sobrenome like "%'+obj+'%" or rg like "%'+obj+'%" or cpf like "%'+obj+'%" or email like "%'+obj+'%" or cargo like "%'+obj+'%" or telefone like "%'+obj+'%"', callback)
+    this._connection.query('select * from usuario where nome like "%'+obj+'%" or rg like "%'+obj+'%" or cpf like "%'+obj+'%" or email like "%'+obj+'%" or cargo like "%'+obj+'%" or telefone like "%'+obj+'%"', callback)
 }
 
 UsuarioDAO.prototype.pesquisarId = function(id, callback) {

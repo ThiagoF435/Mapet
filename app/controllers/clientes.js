@@ -20,7 +20,9 @@ module.exports.deletar = function(app, req, res) {
     var id = parseInt(req.query.id)
 
     model.deletar(id, function(err, result) {
-        if(err) throw err
+        if(err) {
+            console.log('Não é possível deletar dados conectados')
+        } 
 
         res.redirect('/clientes/listar')
     })
@@ -63,8 +65,6 @@ module.exports.salvarEdicao = function(app, req, res) {
             obj.email = result[0].email
         if(obj.nome == '') 
             obj.nome = result[0].nome
-        if(obj.sobrenome == '') 
-            obj.sobrenome = result[0].sobrenome
         if(obj.data_nasc == '') 
             obj.data_nasc = result[0].data_nasc
         if(obj.rg == '') 
@@ -72,7 +72,7 @@ module.exports.salvarEdicao = function(app, req, res) {
         if(obj.telefone == '') 
             obj.telefone = result[0].telefone
         
-        model.editar(id, obj.email, obj.nome, obj.sobrenome, obj.data_nasc, obj.rg, obj.telefone, function(err, result) {
+        model.editar(id, obj.email, obj.nome, obj.data_nasc, obj.rg, obj.telefone, function(err, result) {
             if(err) throw err
     
             res.redirect('/clientes/listar')

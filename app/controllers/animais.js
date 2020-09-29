@@ -1,18 +1,27 @@
 module.exports.cadastrar = function(app, req, res) {
     var conn = app.config.databaseConnection()
     var modelEspecie = new app.app.models.EspecieDAO(conn)
+
+
+    modelEspecie.pesquisar('', function(err, resultEspecie) {
+    if(err) throw err
+
+        res.render('animais/cadastrar', {dadosEspecie : resultEspecie})
+    })
+}
+
+module.exports.cadastrar2 = function(app, req, res) {
+    var conn = app.config.databaseConnection()
+    var obj = req.body
     var modelRaca = new app.app.models.RacaDAO(conn)
     var modelCliente = new app.app.models.ClienteDAO(conn)
 
-    modelEspecie.pesquisar('', function(err, resultEspecie) {
+    modelCliente.pesquisar('', function(err, resultCliente) {
         if(err) throw err
-        modelRaca.pesquisar('', function(err, resultRaca) {
+        modelRaca.pesquisar(obj.nome_especie, function(err, resultRaca) {
             if(err) throw err
-            modelCliente.pesquisar('', function(err, resultCliente) {
-                if(err) throw err
 
-                res.render('animais/cadastrar', {dadosEspecie : resultEspecie, dadosRaca: resultRaca, dadosCliente : resultCliente})
-            })
+            res.render('animais/cadastrar2', {dados : obj, dadosRaca : resultRaca, dadosCliente : resultCliente})
         })
     })
 }
@@ -35,7 +44,9 @@ module.exports.deletar = function(app, req, res) {
     var id = parseInt(req.query.id)
 
     model.deletar(id, function(err, result) {
-        if(err) throw err
+        if(err) {
+            console.log('Não é possível deletar dados conectados')
+        } 
 
         res.redirect('/animais/listar')
     })
@@ -44,23 +55,15 @@ module.exports.deletar = function(app, req, res) {
 module.exports.editar = function(app, req, res) {
     var id = parseInt(req.query.id)
     var conn = app.config.databaseConnection()
-    var model = new app.app.models.AnimalDAO(conn)
-    var modelEspecie = new app.app.models.EspecieDAO(conn)
+    var modelAnimal = new app.app.models.AnimalDAO(conn)
     var modelRaca = new app.app.models.RacaDAO(conn)
-    var modelCliente = new app.app.models.ClienteDAO(conn)
 
-    modelEspecie.pesquisar('', function(err, resultEspecie) {
-        if(err) throw err
-        modelRaca.pesquisar('', function(err, resultRaca) {
+    modelAnimal.pesquisarId(id, function(err, resultAnimal) {
+    if(err) throw err
+         modelRaca.pesquisar(resultAnimal[0].nome_especie, function(err, resultRaca) {
             if(err) throw err
-            modelCliente.pesquisar('', function(err, resultCliente) {
-                if(err) throw err
-                model.pesquisarId(id, function(err, result) {
-                    if(err) throw err
 
-                    res.render('animais/editar', {id : id, dados : result, dadosEspecie : resultEspecie, dadosRaca: resultRaca, dadosCliente : resultCliente})
-                })
-            })
+            res.render('animais/editar', {id : id, dados : resultAnimal, dadosRaca: resultRaca})
         })
     })
 }
@@ -72,8 +75,11 @@ module.exports.visualizar = function(app, req, res) {
 
     model.pesquisarId(id, function(err, result) {
         if(err) throw err
-        
-        res.render('animais/visualizar', {id : id, dados : result})
+        model.pesquisarConsultas(id, function(err, resultConsultas) {
+            if(err) throw err
+
+            res.render('animais/visualizar', {id : id, dados : result, consultas : resultConsultas})
+        })
     })
 }
 

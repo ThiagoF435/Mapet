@@ -12,16 +12,11 @@ function validateFormUsuario() {
     }
 
     var nome = document.forms['form']['nome'].value
-    if(nome.length > 40) {
-        alert('O nome do usuário deve conter menos de 40 caracteres!')
+    if(nome.length > 100) {
+        alert('O nome do usuário deve conter menos de 100 caracteres!')
         return false
     }
 
-    var sobrenome = document.forms['form']['sobrenome'].value
-    if(sobrenome.length > 40) {
-        alert('O sobrenome do usuário deve conter menos de 40 caracteres!')
-        return false
-    }
 
     var rg = document.forms['form']['rg'].value
     if(rg.length != 9) {
@@ -56,14 +51,8 @@ function validateFormCliente() {
     }
 
     var nome = document.forms['form']['nome'].value
-    if(nome.length > 40) {
-        alert('O nome do cliente deve conter menos de 40 caracteres!')
-        return false
-    }
-
-    var sobrenome = document.forms['form']['sobrenome'].value
-    if(sobrenome.length > 40) {
-        alert('O sobrenome do cliente deve conter menos de 40 caracteres!')
+    if(nome.length > 100) {
+        alert('O nome do cliente deve conter menos de 100 caracteres!')
         return false
     }
 
@@ -106,6 +95,46 @@ function validateFormRaca() {
     var nome = document.forms['form']['nome_raca'].value
     if(nome.length > 40) {
         alert('O nome da raça deve conter menos de 40 caracteres!')
+        return false
+    }
+}
+
+function validateFormAgenda() {
+    var motivo = document.forms['form']['motivo'].value
+    if(motivo.length > 100) {
+        alert('O motivo da consulta deve conter menos de 100 caracteres!')
+        return false
+    }
+}
+
+function validateFormHistorico() {
+    var descricao = document.forms['form']['descricao'].value
+    if(descricao.length > 500) {
+        alert('A descrição da consulta deve conter menos de 500 caracteres!')
+        return false
+    }
+
+    var diagnostico = document.forms['form']['diagnostico'].value
+    if(diagnostico.length > 100) {
+        alert('O diagnóstico da consulta deve conter menos de 100 caracteres!')
+        return false
+    }
+
+    var vacina = document.forms['form']['vacina'].value
+    if(vacina.length > 100) {
+        alert('As vacinas da consulta devem conter menos de 100 caracteres!')
+        return false
+    }
+
+    var remedio = document.forms['form']['remedio'].value
+    if(remedio.length > 100) {
+        alert('Os remédios da consulta devem conter menos de 100 caracteres!')
+        return false
+    }
+
+    var conclusao = document.forms['form']['conclusao'].value
+    if(conclusao.length > 100) {
+        alert('A conclusão da consulta deve conter menos de 100 caracteres!')
         return false
     }
 }

@@ -56,11 +56,10 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>Configurações</span>
-                </a>
-            </li>
+                <a class="nav-link" href="/historico/listar">
+                  <i class="fas fa-fw fa-wrench"></i>
+                  <span>Históricos</span></a>
+              </li>
             <li class="nav-item">
                 <a class="nav-link" href="">
                     <i class="fas fa-fw fa-user"></i>
@@ -95,9 +94,7 @@
                                                 <div class="form-group">
                                                     <label style="font-weight: bold;">Raça:</label>
                                                     <label>
-                                                        <% for(var i = 0; i < dados.length; i++) { %>
-                                                            <%= dados[i].nome_raca %>
-                                                        <% } %>
+                                                    <%= dados[0].nome_raca %>
                                                     </label>                                                    
                                                 </div>
                                             </div>
@@ -105,9 +102,7 @@
                                                 <div class="form-group">
                                                     <label style="font-weight: bold;">Espécie:</label>
                                                     <label>
-                                                        <% for(var i = 0; i < dados.length; i++) { %>
-                                                            <%= dados[i].nome_especie %>
-                                                        <% } %>
+                                                    <%= dados[0].nome_especie %>
                                                     </label>                                                    
                                                 </div>
                                             </div>                                            

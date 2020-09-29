@@ -56,11 +56,10 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>Configurações</span>
-                </a>
-            </li>
+                <a class="nav-link" href="/historico/listar">
+                  <i class="fas fa-fw fa-wrench"></i>
+                  <span>Históricos</span></a>
+              </li>
             <li class="nav-item">
                 <a class="nav-link" href="">
                     <i class="fas fa-fw fa-user"></i>
@@ -92,16 +91,14 @@
                                 <div class="card-body">
                                     <form action="/especies/salvar_edicao" name="form" method="POST" onsubmit="return validateFormEspecie()" role="form">
                                         <div class="row no-gutters align-items-center">
-                                            <% for(var i = 0; i < dados.length; i++) { %>
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label>
                                                         Espécie <span class="required">*</span>
                                                     </label>
-                                                    <input type="text" placeholder="<%= dados[i].nome_especie %>" name="nome_especie" class="form-control">
+                                                    <input type="text" placeholder="<%= dados[0].nome_especie %>" name="nome_especie" class="form-control" required>
                                                 </div>
                                             </div>
-                                            <% } %>
                                             <input type="hidden" id="id" name="id" value="<%=id%>">
                                             <button type="submit" class="btn btn-primary">Atualizar</button>
                                         </div>

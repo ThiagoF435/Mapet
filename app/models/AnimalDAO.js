@@ -27,19 +27,27 @@ AnimalDAO.prototype.listar = function(perPage, offset, callback) {
 }
 
 AnimalDAO.prototype.listar = function(perPage, offset, callback) {
-    this._connection.query('select a.id_animal, a.id_dono, a.nome, a.data_nasc, a.nome_especie, a.nome_raca, c.nome as nome_dono, c.sobrenome as sobrenome_dono, c.cpf as cpf_dono from animal a, cliente c where a.id_dono = c.id_dono order by a.id_animal desc limit '+perPage+' offset '+offset, callback)
+    this._connection.query('select a.id_animal, a.id_dono, a.nome, a.data_nasc, a.nome_especie, a.nome_raca, c.nome as nome_dono, c.cpf as cpf_dono from animal a, cliente c where a.id_dono = c.id_dono order by a.id_animal desc limit '+perPage+' offset '+offset, callback)
 }
 
 AnimalDAO.prototype.pesquisar = function(obj, callback) {
-    this._connection.query('select a.id_animal, a.id_dono, a.nome, a.data_nasc, a.nome_especie, a.nome_raca, c.nome as nome_dono, c.sobrenome as sobrenome_dono, c.cpf as cpf_dono from animal a, cliente c where (a.nome like "%'+obj+'%" and a.id_dono = c.id_dono) or (a.data_nasc like "%'+obj+'%" and a.id_dono = c.id_dono) or (a.nome_especie like "%'+obj+'%" and a.id_dono = c.id_dono) or (a.nome_raca like "%'+obj+'%" and a.id_dono = c.id_dono) or (c.nome like "%'+obj+'%" and a.id_dono = c.id_dono) or (c.sobrenome like "%'+obj+'%" and a.id_dono = c.id_dono) or (c.cpf like "%'+obj+'%" and a.id_dono = c.id_dono)', callback)
+    this._connection.query('select a.id_animal, a.id_dono, a.nome, a.data_nasc, a.nome_especie, a.nome_raca, c.nome as nome_dono, c.cpf as cpf_dono from animal a, cliente c where (a.nome like "%'+obj+'%" and a.id_dono = c.id_dono) or (a.data_nasc like "%'+obj+'%" and a.id_dono = c.id_dono) or (a.nome_especie like "%'+obj+'%" and a.id_dono = c.id_dono) or (a.nome_raca like "%'+obj+'%" and a.id_dono = c.id_dono) or (c.nome like "%'+obj+'%" and a.id_dono = c.id_dono) or (c.cpf like "%'+obj+'%" and a.id_dono = c.id_dono)', callback)
 }
 
 AnimalDAO.prototype.pesquisarId = function(id, callback) {
-    this._connection.query('select a.*, c.nome as nome_dono, c.sobrenome as sobrenome_dono from animal a, cliente c where id_animal = '+id+' and a.id_dono = c.id_dono', callback)
+    this._connection.query('select a.*, c.nome as nome_dono from animal a, cliente c where id_animal = '+id+' and a.id_dono = c.id_dono', callback)
 }
 
 AnimalDAO.prototype.pesquisarIdDono = function(id, callback) {
     this._connection.query('select * from animal where id_dono = '+id, callback)
+}
+
+AnimalDAO.prototype.pesquisarIdDono = function(id, callback) {
+    this._connection.query('select * from animal where id_dono = '+id, callback)
+}
+
+AnimalDAO.prototype.pesquisarConsultas = function(id, callback) {
+    this._connection.query('select a.id_animal, h.*, ag.data, ag.id_agenda, u.nome as nome_usuario, u.id_user from historico h, agenda ag, usuario u, animal a where a.id_animal = '+id+' and a.id_animal = h.id_animal and u.id_user = h.id_user and ag.id_agenda = h.id_agenda order by h.id_historico desc', callback)
 }
 
 module.exports = function() {

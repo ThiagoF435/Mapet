@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
 
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
 
@@ -21,7 +20,7 @@
             color: black;
         }
     </style>
-    <link rel="shortcut icon" href="img/favicon-32x32.png">
+
 </head>
 
 <body id="page-top">
@@ -39,6 +38,7 @@
                 </div>
                 <div class="sidebar-brand-text mx-3">Mapet</div>
             </a>
+
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
@@ -81,137 +81,117 @@
                     <!-- Page Heading -->
                     <nav class="navbar navbar-light bg-white" style="padding-bottom: 0px;padding-top: 0px;height: 80px; margin-bottom: 1%;">
                         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                            <h1 class="h3 mb-0 text-gray-800 pt-3">Visualizar Pet</h1>
+                            <h1 class="h3 mb-0 text-gray-800 pt-3">Consulta</h1>
                         </div>
-                        <a href="/animais/listar"><button id="btn-cancelar" class="btn btn-primary" style="float:right;margin-right: 2%;">Voltar</button></a>
+                        <a href="/agenda/listar"><button id="btn-cancelar" class="btn btn-primary">Cancelar</button></a>
                     </nav>
+
                     <section class="page-content">
                         <div class="container">
                             <div class="col-md-12">
-                                <div id="div-table-content" class="card show">
+                                <div id="div-table-content" class="card show  mb-1">
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
-                                            <div class="col-md-3 pr-2">
-                                                <div class="form-group">
-                                                    <label style="font-weight: bold;">Nome:</label>
-                                                    <label>
-                                                        <%= dados[0].nome %>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3 pr-2">
-                                                <div class="form-group">
-                                                    <label style="font-weight: bold;">Espécie:</label>
-                                                    <label>
-                                                        <%= dados[0].nome_especie %>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3 pr-2">
-                                                <div class="form-group">
-                                                    <label style="font-weight: bold;">Raça:</label>
-                                                    <label>
-                                                        <%= dados[0].nome_raca %>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-12 pr-2">
+                                            <div class="col-md-6 pr-2">
                                                 <div class="form-group">
                                                     <label style="font-weight: bold;">Dono:</label>
                                                     <label>
-                                                        <%= dados[0].nome_dono %>
+                                                        <%= dadosAnimal[0].nome_dono %>
                                                     </label>
                                                 </div>
                                             </div>
-                                            <div class="col-md-12 pr-2">
+                                            <div class="col-md-6 pr-2">
                                                 <div class="form-group">
-                                                    <label style="font-weight: bold;">Data de Nascimento:</label>
+                                                    <label style="font-weight: bold;">Pet:</label>
                                                     <label>
-                                                        <%= dados[0].data_nasc %>
+                                                        <%= dadosAnimal[0].nome %>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 pr-2">
+                                                <div class="form-group">
+                                                    <label style="font-weight: bold;">Data e Hora:</label>
+                                                    <label>
+                                                        <%= dadosAgenda[0].data.toString().substring(21, 0) %>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 pr-2">
+                                                <div class="form-group">
+                                                    <label style="font-weight: bold;">Veterinário(a):</label>
+                                                    <label>
+                                                        <%= dadosUsuario[0].nome %>
                                                     </label>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <% for(var i = 0; i < consultas.length; i++) { %>
-                                <div id="div-table-content" class="card show mt-3">
-                                    <div class="card-header btn btn-primary" data-toggle="collapse" style="background-color:#f6c23e" href="#collapseExample<%=i%>" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                        <h6 class="mb-0 text-white float-left">
-                                            &nbsp;Consulta <%= consultas[i].data.toString().substring(21, 0) %>
-                                        </h6>
-                                    </div>
-                                    <div class="collapse" id="collapseExample<%=i%>">
-                                        <div class="card-body">
+                                        <form action="/historico/salvar_cadastro" name="form" method="POST" onsubmit="return validateFormHistorico()" role="form">
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col-md-12 pr-2">
                                                     <div class="form-group">
-                                                        <label style="font-weight: bold;">Consulta:</label>
                                                         <label>
-                                                            <%= consultas[i].data.toString().substring(21, 0) %>
+                                                            Descrição:
                                                         </label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-12 pr-2">
-                                                    <div class="form-group">
-                                                        <label style="font-weight: bold;">Veterinário(a):</label>
-                                                        <label>
-                                                            <%= consultas[i].nome_usuario %>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-12 pr-2">
-                                                    <div class="form-group">
-                                                        <label style="font-weight: bold;">Descrição:</label>
-                                                        <label>
-                                                            <%= consultas[i].descricao %>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-12 pr-2">
-                                                    <div class="form-group">
-                                                        <label style="font-weight: bold;">Diagnóstico:</label>
-                                                        <label>
-                                                            <%= consultas[i].diagnostico %>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-12 pr-2">
-                                                    <div class="form-group">
-                                                        <label style="font-weight: bold;">Vacinas:</label>
-                                                        <label>
-                                                            <%= consultas[i].vacina %>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-12 pr-2">
-                                                    <div class="form-group">
-                                                        <label style="font-weight: bold;">Remédios:</label>
-                                                        <label>
-                                                            <%= consultas[i].remedio %>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-12 pr-2">
-                                                    <div class="form-group">
-                                                        <label style="font-weight: bold;">Conclusão:</label>
-                                                        <label>
-                                                            <%= consultas[i].conclusao %>
-                                                        </label>
+                                                        <textarea name="descricao" class="form-control rounded-0" rows="3" required></textarea>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col-md-12 pr-2">
+                                                    <div class="form-group">
+                                                        <label>
+                                                            Diagnóstico:
+                                                        </label>
+                                                        <textarea name="diagnostico" class="form-control rounded-0" rows="3" required></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col-md-12 pr-2">
+                                                    <div class="form-group">
+                                                        <label>
+                                                            Vacinas:
+                                                        </label>
+                                                        <textarea name="vacina" class="form-control rounded-0" rows="3" required></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col-md-12 pr-2">
+                                                    <div class="form-group">
+                                                        <label>
+                                                            Remédios:
+                                                        </label>
+                                                        <textarea name="remedio" class="form-control rounded-0" rows="3" required></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col-md-12 pr-2">
+                                                    <div class="form-group">
+                                                        <label>
+                                                            Conclusão:
+                                                        </label>
+                                                        <textarea name="conclusao" class="form-control rounded-0" rows="3" required></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <input type="hidden" value="<%= dadosIdAgenda %>" name="id_agenda">
+                                            <input type="hidden" value="<%= dadosIdUser %>" name="id_user">
+                                            <input type="hidden" value="<%= dadosIdAnimal %>" name="id_animal">
+                                            <button type="submit" class="btn btn-primary">Concluir</button>
+                                        </form>
                                     </div>
                                 </div>
-                                <% } %>
                             </div>
                         </div>
                     </section>
+
                 </div>
             </div>
         </div>
     </div>
+
     <!-- Bootstrap core JavaScript-->
     <script src="/js/sbadmin/vendor/jquery/jquery.min.js"></script>
     <script src="/js/sbadmin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -221,5 +201,8 @@
 
     <!-- Custom scripts for all pages-->
     <script src="/js/sbadmin/js/sb-admin-2.min.js"></script>
+    <script src="/js/Personalizados/validacao.js"></script>
+
 </body>
+
 </html>
