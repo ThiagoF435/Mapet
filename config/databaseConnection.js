@@ -3,9 +3,9 @@ var mysql = require('mysql')
 var connectMySQL = function() {
     return mysql.createConnection({
         host: 'localhost',
-        user: 'root',
-        password: '',
-        database: 'mapet'
+        user: 'mapetliv_default',
+        password: '6*aN2t8w',
+        database: 'mapetliv_default'
     })
 }
 
