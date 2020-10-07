@@ -10,6 +10,10 @@ UsuarioDAO.prototype.deletar = function(id, callback) {
     this._connection.query('delete from usuario where id_user = '+id, callback)
 }
 
+UsuarioDAO.prototype.editarSenha = function(id, novaSenha, callback) {
+    this._connection.query('update usuario set senha = "'+novaSenha+'" where id_user = '+id, callback)
+}
+
 UsuarioDAO.prototype.editar = function(id, email, senha, nome, data_nasc, rg, cargo, telefone, callback) {
     this._connection.query('update usuario set email = "'+email+'", senha = "'+senha+'", nome = "'+nome+'", data_nasc = "'+data_nasc+'", rg = "'+rg+'", cargo = "'+cargo+'", telefone = "'+telefone+'" where id_user = '+id, callback)
 }
@@ -32,6 +36,14 @@ UsuarioDAO.prototype.pesquisarId = function(id, callback) {
 
 UsuarioDAO.prototype.pesquisarVeterinarios = function(callback) {
     this._connection.query('select * from usuario where cargo like "%eteri%"', callback)
+}
+
+UsuarioDAO.prototype.logar = function(obj, callback) {
+    this._connection.query('select * from usuario where email = "'+obj.email+'" and senha = "'+obj.senha+'"', callback)
+}
+
+UsuarioDAO.prototype.verificarEmail = function(email, callback) {
+    this._connection.query('select * from usuario where email = "'+email+'"', callback)
 }
 
 module.exports = function() {

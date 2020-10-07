@@ -1,4 +1,8 @@
 module.exports.cadastrar = function(app, req, res) {
+    if(req.session.loggedin != true) {
+        return res.redirect('/')
+    }
+
     var conn = app.config.databaseConnection()
     var modelCliente = new app.app.models.ClienteDAO(conn)
     var modelUsuario = new app.app.models.UsuarioDAO(conn)
@@ -14,6 +18,10 @@ module.exports.cadastrar = function(app, req, res) {
 }
 
 module.exports.cadastrar2 = function(app, req, res) {
+    if(req.session.loggedin != true) {
+        return res.redirect('/')
+    }
+
     var conn = app.config.databaseConnection()
     var modelAnimal = new app.app.models.AnimalDAO(conn)
     var modelCliente = new app.app.models.ClienteDAO(conn)
@@ -34,6 +42,10 @@ module.exports.cadastrar2 = function(app, req, res) {
 }
 
 module.exports.salvarCadastro = function(app, req, res) {
+    if(req.session.loggedin != true) {
+        return res.redirect('/')
+    }
+
     var conn = app.config.databaseConnection()
     var model = new app.app.models.AgendaDAO(conn)
     var obj = req.body
@@ -46,6 +58,10 @@ module.exports.salvarCadastro = function(app, req, res) {
 }
 
 module.exports.deletar = function(app, req, res) {
+    if(req.session.loggedin != true) {
+        return res.redirect('/')
+    }
+
     var conn = app.config.databaseConnection()
     var model = new app.app.models.AgendaDAO(conn)
     var id = parseInt(req.query.id)
@@ -60,6 +76,10 @@ module.exports.deletar = function(app, req, res) {
 }
 
 module.exports.editar = function(app, req, res) {
+    if(req.session.loggedin != true) {
+        return res.redirect('/')
+    }
+
     var id_agenda = parseInt(req.query.id_agenda)
     var id_dono = parseInt(req.query.id_dono)
     var conn = app.config.databaseConnection()
@@ -81,6 +101,10 @@ module.exports.editar = function(app, req, res) {
 }
 
 module.exports.editarData = function(app, req, res) {
+    if(req.session.loggedin != true) {
+        return res.redirect('/')
+    }
+
     var id = parseInt(req.query.id)
     var conn = app.config.databaseConnection()
     var model = new app.app.models.AgendaDAO(conn)
@@ -93,6 +117,10 @@ module.exports.editarData = function(app, req, res) {
 }
 
 module.exports.visualizar = function(app, req, res) {
+    if(req.session.loggedin != true) {
+        return res.redirect('/')
+    }
+
     var id = parseInt(req.query.id)
     var conn = app.config.databaseConnection()
     var model = new app.app.models.AgendaDAO(conn)
@@ -100,11 +128,15 @@ module.exports.visualizar = function(app, req, res) {
     model.pesquisarId(id, function(err, result) {
         if(err) throw err
         
-        res.render('agenda/visualizar', {id : id, dados : result})
+        res.render('agenda/visualizar', {id : id, dados : result, session : req.session})
     })
 }
 
 module.exports.salvarEdicao = function(app, req, res) { 
+    if(req.session.loggedin != true) {
+        return res.redirect('/')
+    }
+
     var obj = req.body
     var id = parseInt(req.body.id)
     var conn = app.config.databaseConnection()
@@ -129,6 +161,10 @@ module.exports.salvarEdicao = function(app, req, res) {
 }
 
 module.exports.salvarEdicaoData = function(app, req, res) {
+    if(req.session.loggedin != true) {
+        return res.redirect('/')
+    }
+
     var obj = req.body.data
     var id = parseInt(req.body.id)
     var conn = app.config.databaseConnection()
@@ -142,6 +178,10 @@ module.exports.salvarEdicaoData = function(app, req, res) {
 }
 
 module.exports.listar = function(app, req, res) {
+    if(req.session.loggedin != true) {
+        return res.redirect('/')
+    }
+
     var conn = app.config.databaseConnection()
     var model = new app.app.models.AgendaDAO(conn)
 
@@ -174,6 +214,10 @@ module.exports.listar = function(app, req, res) {
 }
 
 module.exports.pesquisar = function(app, req, res) {
+    if(req.session.loggedin != true) {
+        return res.redirect('/')
+    }
+
     var conn = app.config.databaseConnection()
     var model = new app.app.models.AgendaDAO(conn)
     var obj = req.body.obj
@@ -186,6 +230,10 @@ module.exports.pesquisar = function(app, req, res) {
 }
 
 module.exports.compareceuSim = function(app, req, res) {
+    if(req.session.loggedin != true) {
+        return res.redirect('/')
+    }
+
     var conn = app.config.databaseConnection()
     var model = new app.app.models.AgendaDAO(conn)
     var id = parseInt(req.query.id)
@@ -198,6 +246,10 @@ module.exports.compareceuSim = function(app, req, res) {
 }
 
 module.exports.compareceuNao = function(app, req, res) {
+    if(req.session.loggedin != true) {
+        return res.redirect('/')
+    }
+    
     var conn = app.config.databaseConnection()
     var model = new app.app.models.AgendaDAO(conn)
     var id = parseInt(req.query.id)

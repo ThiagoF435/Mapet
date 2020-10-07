@@ -6,8 +6,8 @@ function validateFormUsuario() {
     }
 
     var senha = document.forms['form']['senha'].value
-    if(senha.length > 40) {
-        alert('A senha do usuário deve conter menos de 40 caracteres!')
+    if(senha.length > 20) {
+        alert('A senha do usuário deve conter menos de 20 caracteres!')
         return false
     }
 
@@ -135,6 +135,26 @@ function validateFormHistorico() {
     var conclusao = document.forms['form']['conclusao'].value
     if(conclusao.length > 100) {
         alert('A conclusão da consulta deve conter menos de 100 caracteres!')
+        return false
+    }
+}
+
+function validateFormEditarSenha() {
+    var senhaAntiga = document.forms['form']['senhaAntiga'].value
+    if(senhaAntiga.length > 20) {
+        alert('A senha antiga pode conter somente 20 caracteres!')
+        return false
+    }
+
+    var novaSenha = document.forms['form']['novaSenha'].value
+    if(novaSenha.length > 20) {
+        alert('A senha nova pode conter somente 20 caracteres!')
+        return false
+    }
+
+    var confirmarNovaSenha = document.forms['form']['confirmarNovaSenha'].value
+    if(confirmarNovaSenha.length > 20) {
+        alert('A senha nova pode conter somente 20 caracteres!')
         return false
     }
 }

@@ -1,4 +1,8 @@
 module.exports.cadastrar = function(app, req, res) {
+    if(req.session.loggedin != true) {
+        return res.redirect('/')
+    }
+
     var conn = app.config.databaseConnection()
     var modelEspecie = new app.app.models.EspecieDAO(conn)
 
@@ -11,6 +15,10 @@ module.exports.cadastrar = function(app, req, res) {
 }
 
 module.exports.cadastrar2 = function(app, req, res) {
+    if(req.session.loggedin != true) {
+        return res.redirect('/')
+    }
+
     var conn = app.config.databaseConnection()
     var obj = req.body
     var modelRaca = new app.app.models.RacaDAO(conn)
@@ -27,6 +35,10 @@ module.exports.cadastrar2 = function(app, req, res) {
 }
 
 module.exports.salvarCadastro = function(app, req, res) {
+    if(req.session.loggedin != true) {
+        return res.redirect('/')
+    }
+
     var conn = app.config.databaseConnection()
     var model = new app.app.models.AnimalDAO(conn)
     var obj = req.body
@@ -39,6 +51,10 @@ module.exports.salvarCadastro = function(app, req, res) {
 }
 
 module.exports.deletar = function(app, req, res) {
+    if(req.session.loggedin != true) {
+        return res.redirect('/')
+    }
+
     var conn = app.config.databaseConnection()
     var model = new app.app.models.AnimalDAO(conn)
     var id = parseInt(req.query.id)
@@ -53,6 +69,10 @@ module.exports.deletar = function(app, req, res) {
 }
 
 module.exports.editar = function(app, req, res) {
+    if(req.session.loggedin != true) {
+        return res.redirect('/')
+    }
+
     var id = parseInt(req.query.id)
     var conn = app.config.databaseConnection()
     var modelAnimal = new app.app.models.AnimalDAO(conn)
@@ -69,6 +89,10 @@ module.exports.editar = function(app, req, res) {
 }
 
 module.exports.visualizar = function(app, req, res) {
+    if(req.session.loggedin != true) {
+        return res.redirect('/')
+    }
+
     var id = parseInt(req.query.id)
     var conn = app.config.databaseConnection()
     var model = new app.app.models.AnimalDAO(conn)
@@ -84,6 +108,10 @@ module.exports.visualizar = function(app, req, res) {
 }
 
 module.exports.salvarEdicao = function(app, req, res) {
+    if(req.session.loggedin != true) {
+        return res.redirect('/')
+    }
+
     var obj = req.body
     var id = parseInt(req.body.id)
     var conn = app.config.databaseConnection()
@@ -112,6 +140,10 @@ module.exports.salvarEdicao = function(app, req, res) {
 }
 
 module.exports.listar = function(app, req, res) {
+    if(req.session.loggedin != true) {
+        return res.redirect('/')
+    }
+
     var conn = app.config.databaseConnection()
     var model = new app.app.models.AnimalDAO(conn)
 
@@ -144,6 +176,10 @@ module.exports.listar = function(app, req, res) {
 }
 
 module.exports.pesquisar = function(app, req, res) {
+    if(req.session.loggedin != true) {
+        return res.redirect('/')
+    }
+    
     var conn = app.config.databaseConnection()
     var model = new app.app.models.AnimalDAO(conn)
     var obj = req.body.obj

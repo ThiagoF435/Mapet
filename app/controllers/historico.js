@@ -1,4 +1,12 @@
 module.exports.cadastrar = function(app, req, res) {
+    if(req.session.loggedin != true) {
+        return res.redirect('/')
+    }
+
+    if(!req.session.cargo.includes('eteri')) { 
+        return res.redirect('/erro')
+    }
+
     var id_agenda = parseInt(req.query.id_agenda)
     var id_user = parseInt(req.query.id_user)
     var id_animal = parseInt(req.query.id_animal)
@@ -21,6 +29,14 @@ module.exports.cadastrar = function(app, req, res) {
 }
 
 module.exports.salvarCadastro = function(app, req, res) {
+    if(req.session.loggedin != true) {
+        return res.redirect('/')
+    }
+
+    if(!req.session.cargo.includes('eteri')) { 
+        return res.redirect('/erro')
+    }
+
     var conn = app.config.databaseConnection()
     var model = new app.app.models.HistoricoDAO(conn)
     var obj = req.body
@@ -33,6 +49,14 @@ module.exports.salvarCadastro = function(app, req, res) {
 }
 
 module.exports.visualizar = function(app, req, res) {
+    if(req.session.loggedin != true) {
+        return res.redirect('/')
+    }
+
+    if(!req.session.cargo.includes('eteri')) { 
+        return res.redirect('/erro')
+    }
+
     var id = parseInt(req.query.id)
     var conn = app.config.databaseConnection()
     var modelHistorico = new app.app.models.HistoricoDAO(conn)
@@ -57,6 +81,14 @@ module.exports.visualizar = function(app, req, res) {
 }
 
 module.exports.listar = function(app, req, res) {
+    if(req.session.loggedin != true) {
+        return res.redirect('/')
+    }
+
+    if(!req.session.cargo.includes('eteri')) {  
+        return res.redirect('/erro')
+    }
+
     var conn = app.config.databaseConnection()
     var model = new app.app.models.HistoricoDAO(conn)
 
@@ -89,6 +121,14 @@ module.exports.listar = function(app, req, res) {
 }
 
 module.exports.pesquisar = function(app, req, res) {
+    if(req.session.loggedin != true) {
+        return res.redirect('/')
+    }
+
+    if(!req.session.cargo.includes('eteri')) { 
+        return res.redirect('/erro')
+    }
+    
     var conn = app.config.databaseConnection()
     var model = new app.app.models.HistoricoDAO(conn)
     var obj = req.body.obj
