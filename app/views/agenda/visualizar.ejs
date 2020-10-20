@@ -92,9 +92,9 @@
                                         <div class="row no-gutters align-items-center">
                                             <div class="col-md-12 pr-2">
                                                 <div class="form-group">
-                                                    <label style="font-weight: bold;">Data e Hora:</label>
+                                                    <label style="font-weight: bold;">Data (mm/dd/yyyy):</label>
                                                     <label>
-                                                        <%= dados[0].data.toString().substring(21, 0) %>
+                                                        <%= dados[0].data.toLocaleString('en-US') %>
                                                     </label>
                                                 </div>
                                             </div>
@@ -130,7 +130,9 @@
                                                     </label>
                                                 </div>
                                             </div>
+                                            <% if(session.cargo.toString().includes('eteri')) { %>
                                             <a href="/historico/cadastrar?id_agenda=<%=dados[0].id_agenda%>&id_user=<%=dados[0].id_user%>&id_animal=<%=dados[0].id_animal%>"><button id="btn-iniciar-consulta" class="btn btn-primary">Iniciar consulta</button></a>
+                                            <% } %>
                                         </div>
                                     </div>
                                 </div>

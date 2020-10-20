@@ -18,4 +18,12 @@ module.exports = function(app) {
     app.post('/historico/pesquisar', function(req, res) {
         app.app.controllers.historico.pesquisar(app, req, res)
     })
+
+    app.get('/historico/relatorio', function(req, res) {
+        app.app.controllers.historico.relatorio(app, req, res)
+    })
+
+    app.post('/historico/imprimir', function(req, res) {
+        app.app.controllers.historico.imprimir(app, req, res)
+    })
 }

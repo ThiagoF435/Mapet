@@ -90,9 +90,9 @@
                                         <div class="row no-gutters align-items-center">
                                             <div class="col-md-12 pr-2">
                                                 <div class="form-group">
-                                                    <label style="font-weight: bold;">Data e Hora:</label>
+                                                    <label style="font-weight: bold;">Data (mm/dd/yyyy):</label>
                                                     <label>
-                                                    <%= dadosAgenda[0].data.toString().substring(21, 0) %>
+                                                    <%= dadosAgenda[0].data.toLocaleString('en-US') %>
                                                     </label>                                                 
                                                 </div>
                                             </div>

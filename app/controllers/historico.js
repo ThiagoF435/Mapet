@@ -139,3 +139,40 @@ module.exports.pesquisar = function(app, req, res) {
         res.render('historico/listar', {dados : result})
     })
 }
+
+module.exports.relatorio = function(app, req, res) {
+    if(req.session.loggedin != true) {
+        return res.redirect('/')
+    }
+
+    if(!req.session.cargo.includes('eteri')) { 
+        return res.redirect('/erro')
+    }
+    
+    res.render('historico/relatorio')
+}
+
+module.exports.imprimir = function(app, req, res) {
+    if(req.session.loggedin != true) {
+        return res.redirect('/')
+    }
+
+    if(!req.session.cargo.includes('eteri')) { 
+        return res.redirect('/erro')
+    }
+
+    var conn = app.config.databaseConnection()
+    var model = new app.app.models.HistoricoDAO(conn)
+    var id = req.session.id_user
+    var data_inicio = req.body.data_inicio
+    var data_final = req.body.data_final
+
+    model.gerarRelatorio(id, data_inicio, data_final, function(err, result) {
+        if(err) throw err
+
+        var today = new Date()
+        var time = 'Data: ' + today.getDate() + '/' + (today.getMonth()+1) + '/' + today.getFullYear() + ' Hora: ' + today.getHours() + ':' + today.getMinutes()
+
+        res.render('historico/imprimir', {dados : result, data : time})
+    })
+}

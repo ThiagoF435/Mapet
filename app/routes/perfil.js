@@ -10,4 +10,12 @@ module.exports = function(app) {
     app.post('/perfil/editar_senha_salvar', function(req, res) {
         app.app.controllers.perfil.editarSenhaSalvar(app, req, res)
     })
+
+    app.get('/perfil/editar', function(req, res) {
+        app.app.controllers.perfil.editar(app, req, res)
+    })
+
+    app.post('/perfil/salvar_edicao', function(req, res) {
+        app.app.controllers.perfil.salvarEdicao(app, req, res)
+    })
 }
