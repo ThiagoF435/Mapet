@@ -1,21 +1,22 @@
 var express = require('express')
 var consign = require('consign')
 var bodyParser = require('body-parser')
+var expressValidator = require('express-validator')
 var session = require('express-session')
-const { check, validationResult } = require('express-validator');
 
 var app = express()
 app.set('view engine', 'ejs')
 app.set('views', './app/views')
+
+app.use(express.static('./app/public'))
+app.use(bodyParser.urlencoded({extended : true}))
+app.use(expressValidator())
 
 app.use(session({
     secret: 'secret',
     resave: true,
     saveUninitialized: true
 }))
-
-app.use(express.static('./app/public'))
-app.use(bodyParser.urlencoded({extended : true}))
 
 consign()
     .include('app/routes')
@@ -24,4 +25,4 @@ consign()
     .then('app/controllers')
     .into(app)
 
-module.exports = app;
+module.exports = app
